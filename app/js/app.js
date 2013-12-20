@@ -13,5 +13,11 @@ config(['$routeProvider', function($routeProvider) {
     controller: 'orderCtrl'});
   $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', 
     controller: 'orderCtrl'});
+  $routeProvider.when('/orders/:id', {templateUrl: 'partials/partial3.html', 
+	controller: 'orderShowCtrl'});
+  $routeProvider.when('/orders/edit/:id', {templateUrl: 'partials/edit.html', 
+    controller: 'orderEditCtrl'});
+  	$routeProvider.when('/orders/new', {templateUrl: 'partials/add.html', 
+	    controller: 'orderAddCtrl'});
   $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
