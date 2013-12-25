@@ -2,26 +2,29 @@
 
 /* Controllers */
 
-var orderControllers = angular.module('orderControllers', []);
+var orderControllers = angular.module('order', ['ngResource', 'ngRoute']);
 
 orderControllers.controller('orderCtrl', ['$scope', 'Order', '$location',
     function($scope, Order, $location) {
 	  $scope.orders = Order.query();
-	$scope.destroy = function() {
-      $scope.Order.$delete();
-      $location.path('/');
-    };
   }]);
   
 
 orderControllers.controller('orderShowCtrl', ['$scope', 'Order', '$routeParams',
     function($scope, Order, $routeParams) {
-	  $scope.singleOrder = Order.get({id:$routeParams.id});
+	  $scope.params = $routeParams;
+	  var singleOrder = Order.get({ id : $scope.params.id });
+	  $scope.singleOrder = singleOrder;
+	  alert(typeof(singleOrder)) 
   }]);
 
 orderControllers.controller('orderEditCtrl', ['$scope', 'Order', '$routeParams',
     function($scope, Order, $routeParams) {
-	  $scope.singleOrder = Order.get({id:$routeParams.id});
+	  $scope.singleOrder = Order.get({ id: $routeParams.id });
+	$scope.destroy = function() {
+      $scope.orderControllers.$remove();
+      $location.path('/');
+    };
   }]);
 
 orderControllers.controller('orderNewCtrl', ['$scope', 'Order', '$routeParams',

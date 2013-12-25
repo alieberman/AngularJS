@@ -6,14 +6,14 @@ angular.module('orderApp', [
   'ngRoute',
   'myApp.filters',
   'orderServices',
-  'orderControllers'
+  'order'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', 
     controller: 'orderCtrl'});
   $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', 
     controller: 'orderCtrl'});
-  $routeProvider.when('/orders/:id', {templateUrl: 'partials/partial3.html', 
+  $routeProvider.when('/orders/:id', {templateUrl: 'partials/show.html', 
 	controller: 'orderShowCtrl'});
   $routeProvider.when('/orders/edit/:id', {templateUrl: 'partials/edit.html', 
     controller: 'orderEditCtrl'});
