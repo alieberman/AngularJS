@@ -13,9 +13,8 @@ orderControllers.controller('orderCtrl', ['$scope', 'Order', '$location',
 orderControllers.controller('orderShowCtrl', ['$scope', 'Order', '$routeParams',
     function($scope, Order, $routeParams) {
 	  $scope.params = $routeParams;
-	  var singleOrder = Order.get({ id : $scope.params.id });
+	  var singleOrder = Order.query({ id : $scope.params.id });
 	  $scope.singleOrder = singleOrder;
-	  alert(typeof(singleOrder)) 
   }]);
 
 orderControllers.controller('orderEditCtrl', ['$scope', 'Order', '$routeParams',

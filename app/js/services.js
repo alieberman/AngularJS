@@ -2,12 +2,12 @@
 
 /* Services */
 
-var orderServices = angular.module('orderServices', ['ngResource']);
+var orderServices = angular.module('orderServices', ['ngResource', 'ngRoute']);
 
-orderServices.factory('Order', ['$resource',
+orderServices.factory('Order', ['$resource', '$routeParams',
   function($resource){
     return $resource('orders/orders.json', {id:'@id'}, 
-	{ post: {method: 'POST'}, query: {method: 'GET', isArray: true}, update: {method:'PUT'}, delete: {method: 'DELETE'}, get: {method:'GET', params:{id:'@id'}} });
+	{ post: {method: 'POST'}, query: {method: 'GET', isArray: true}, update: {method:'PUT'}, delete: {method: 'DELETE'}, get: {method:'GET', params:{id:'$routeParams.id'}} });
  
   }]);
 
