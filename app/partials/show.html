@@ -1,8 +1,8 @@
 <table>
 	<th>Order ID</th><th>Order Name</th><th>Order Quantity</th><th>Actions</th>
 	<tr>
-	  <td>{{singleOrder[params.id].id}}</td><td>{{singleOrder[params.id].name}}</td><td>{{singleOrder[params.id].quantity}}</td><td><a href="index.html#/orders/edit/{{singleOrder.id}}">Edit</a>
-		<a href="index.html#/view2" ng-click="destroy()">Delete</a></td>	
+	  <td>{{singleOrder[params.id].id}}</td><td>{{singleOrder[params.id].name}}</td><td>{{singleOrder[params.id].quantity}}</td><td><a href="index.html#/orders/edit/{{params.id}}">Edit</a>
+		<a href="index.html#/view2" ng-click="destroy(order)">Delete</a></td>	
 	</tr>
 </table>
 {{singleOrder}}
