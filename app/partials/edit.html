@@ -1,7 +1,7 @@
 <form name="newOrder">
-	<input type="text" ng-model="order.id">
-	<input type="text" ng-model="order.name">
-	<input type="text" ng-model="order.quantity">
-	<a href="index.html#/view2" ng-click="destroy(order)">Delete</a>
-	<a href="index.html#/view2" ng-click="save()">Save</a>
+	<input type="text" name="id" ng-model="order[params.id].id">
+	<input type="text" name="name" ng-model="order[params.id].name">
+	<input type="text" name="quantity" ng-model="order[params.id].quantity">
+	<a href="index.html#/view2" ng-click="destroy(order[params.id])">Delete</a>
+	<a href="index.html#/view2" ng-click="update(order[params.id])">Save</a>
 </form>

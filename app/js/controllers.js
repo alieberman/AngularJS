@@ -8,7 +8,7 @@ orderControllers.controller('orderCtrl', ['$scope', 'Order', '$location',
     function($scope, Order, $location) {
 	  $scope.orders = Order.query();
 	  $scope.destroy = function(order) {
-      Order.remove({id:order.id});
+      Order.remove(order);
       $location.path('/view2');
       };
   }]);
@@ -19,20 +19,32 @@ orderControllers.controller('orderShowCtrl', ['$scope', 'Order', '$routeParams',
 	  $scope.params = $routeParams;
 	  var singleOrder = Order.query({ id : $routeParams.id });
 	  $scope.singleOrder = singleOrder;
+	  $scope.destroy = function(order) {
+      Order.remove({id:$routeParams.id});
+      //$location.path('/view2');
+      };
   }]);
 
 orderControllers.controller('orderEditCtrl', ['$scope', 'Order', '$routeParams',
     function($scope, Order, $routeParams) {
-	  $scope.singleOrder = Order.query({ id: $routeParams.id });
+	  $scope.order = Order.query({ id:$routeParams.id });
+	  $scope.params = $routeParams;
 	$scope.destroy = function(order) {
-      Order.$remove({id:$routeParams.id});
-      $location.path('/');
+      Order.remove({ id:$routeParams.id }, order);
+      //$location.path('/view2');
     };
+    $scope.update = function(order) {
+	    Order.update({ id:$routeParams.id }, order);	
+	};
   }]);
 
-orderControllers.controller('orderNewCtrl', ['$scope', 'Order', '$routeParams',
-    function($scope, Order, $routeParams) {
-	  $scope.singleOrder = Order.query({id:$routeParams.id});
+orderControllers.controller('orderNewCtrl', ['$scope', 'Order',
+    function($scope, Order) {
+	$scope.order = Order.query();
+	  $scope.save = function(order) {
+		//$scope.order.push({id:this.id, name:this.name, quantity:this.quantity})
+	    Order.post({id:$scope.order.id}, order);	
+	  };
   }]);
 
 

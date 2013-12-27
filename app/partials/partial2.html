@@ -4,12 +4,12 @@ Hello!
 	<th>Order ID</th><th>Order Name</th><th>Order Quantity</th><th>Actions</th>
 	<tr ng-repeat="order in orders">
 	  <td>{{order.id}}</td><td>{{order.name}}</td><td>{{order.quantity}}</td><td><a href="index.html#/orders/{{order.id}}">Show</a>
-		<a href="index.html#/orders/edit/{{order.id}}">Edit</a><button ng-click="destroy(order)">Delete</button></td>	
+		<a href="index.html#/orders/edit/{{order.id}}">Edit</a><button ng-click="destroy(order[order.id])">Delete</button></td>	
 	</tr>
 </table>
 Add an order:
 <br>
-<a href="index.html#/orders/new">Add</a>
+<a href="index.html#/order/new">Add</a>
 <br><br>
 {{orders}}
 

@@ -17,7 +17,7 @@ config(['$routeProvider', function($routeProvider) {
 	controller: 'orderShowCtrl'});
   $routeProvider.when('/orders/edit/:id', {templateUrl: 'partials/edit.html', 
     controller: 'orderEditCtrl'});
-  	$routeProvider.when('/orders/new', {templateUrl: 'partials/new.html', 
-	    controller: 'orderAddCtrl'});
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.when('/order/new', {templateUrl: 'partials/new.html', 
+	controller: 'orderNewCtrl'});
+  $routeProvider.otherwise({redirectTo: '/view2'});
 }]);
