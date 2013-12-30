@@ -12,7 +12,7 @@ function main(argv) {
   new HttpServer({
     'GET': createServlet(StaticServlet),
     'HEAD': createServlet(StaticServlet),
-	'POST': createServlet(StaticServlet),
+	'PUT': createServlet(StaticServlet),
 		     // Accept DELETE method
 	'HEAD': createServlet(StaticServlet)
   }).start(Number(argv[2]) || DEFAULT_PORT);
@@ -96,7 +96,7 @@ StaticServlet.prototype.handleRequest = function(req, res) {
   var parts = path.split('/');
 
   // catch the POST request  
-  if (req.method === 'POST') {
+  if (req.method === 'PUT') {
     return self.sendJson_(req, res, path);
   }
   if (parts[parts.length-1].charAt(0) === '.')

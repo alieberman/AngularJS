@@ -33,22 +33,35 @@ orderControllers.controller('orderEditCtrl', ['$scope', 'Order', '$routeParams',
       Order.remove({ id:$routeParams.id }, order);
       //$location.path('/view2');
     };
-    $scope.update = function(order) {
-	    Order.update({ id:$routeParams.id }, order);	
+    $scope.update = function() {
+	    //Order.update({ id:$routeParams.id }, order);	
+		var editOrder = $scope.order[$routeParams.id];
+		var eo = new Order( editOrder );
+		eo.$update(function() {
+			$scope.orderList.push(eo);
+		});
 	};
   }]);
 
-orderControllers.controller('orderNewCtrl', ['$scope', 'Order',
-    function($scope, Order) {
-	$scope.order = Order.query();
-	  $scope.save = function(order) {
+orderControllers.controller('orderNewCtrl', ['$scope', '$location', '$resource', 'Order',
+    function($scope, $location, $resource, Order) {
+	$scope.orderList = Order.get();
+	  $scope.save = function() {
+		
+		//This Posts the $scope.order info, but erases all the old info, and doesn't produce an array
+		
+		
 		//$scope.order.push({id:this.id, name:this.name, quantity:this.quantity})
-	    Order.post({id:$scope.order.id}, order);	
-	  };
+	    //Order.post({id:$scope.order.id}, order);	
+		var newOrder = $scope.order;
+		var no = new Order( newOrder );
+		no.$post(function() {
+			$scope.orderList.push(no);
+		});
+		    
+	  
+	};
   }]);
-
-
-
 
 
 /*angular.module('project', ['ngRoute', 'firebase'])
